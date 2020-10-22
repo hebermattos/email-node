@@ -2,9 +2,20 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const exphbs = require('express-handlebars');
+const compression = require('compression')
+const bodyParser = require('body-parser');
+
+app.use(compression());
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+app.use(express.static('./public'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.render('index', { layout: false })
 })
 
 app.listen(port, () => {
