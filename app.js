@@ -18,6 +18,11 @@ app.get('/', (req, res) => {
   res.render('index', { layout: false })
 })
 
+app.post('/email', (req, res) => {
+  console.log('email')
+  res.render('index', { layout: false })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
