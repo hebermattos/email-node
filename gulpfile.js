@@ -81,6 +81,11 @@ function html() {
         .pipe(dest('./build/views'));
 }
 
+function removePackageJson() {
+    return src('build/*.json', { read: false })
+        .pipe(clean());
+};
+
 exports.css = css;
 exports.js = js;
 exports.images = images;
@@ -89,5 +94,6 @@ exports.html = html;
 exports.default = series(
         createFolders, cleanBuild, 
         parallel(copyServer, copyConfig, copyPackage, copyAssets), 
-        parallel(images, installPackages, css, js, html)
+        parallel(images, installPackages, css, js, html),
+        removePackageJson
     );
