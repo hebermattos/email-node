@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const port = 3000
@@ -32,7 +31,7 @@ app.post('/email', (req, res) => {
   const mailOptions = { 
     from: req.body.email,
     to: config.get('Email.Destinatarios'),
-    subject: config.get('Email.Assunto'),
+    subject: "LOGAZ - CONTATO PELO SITE",
     html: `<!DOCTYPE html>
             <html>
             <head>
@@ -68,4 +67,3 @@ app.post('/email', (req, res) => {
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
 })
-
